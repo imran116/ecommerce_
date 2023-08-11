@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cart</title>
+</head>
+<body>
+<ul>
+    {% for item in cart_items %}
+        <div style="">
+        <li>
+          <img src="{{ item.product.image.url }}" style="height: 113px; width: 103px"><br>
+            <p>Product Name :{{ item.product.title }}</p>
+            <p>Product Price :{{ item.product.price }}</p>
+            <p>Product Quantity :{{ item.quantity }}</p>
+            <p></p>
+        </li>
+        <a href="{% url 'delete-cart' item.pk %}">Remove</a>
+        <p>------------------------------------------------------------------------------------------------</p>
+        </div>
+
+    {% endfor %}
+</ul>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% load static %}
+
+<!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="/" class="logo">
+                            <img src="{% static 'assets/images/logo.png' %}">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="/" class="">Home</a></li>
+                            {% for menu in menus %}
+                            <li class="scroll-to-section"><a href="{{ menu.html_page }}" >{{ menu.menu_name }}</a></li>
+                            {% endfor %}
+
+
+
+{#                            <li class="submenu">#}
+{#                            {% for menu in menus %}#}
+{#                            <a href="#">{{ menu.menu_name }}</a>#}
+{#                            {% endfor %}#}
+{##}
+{##}
+{#                                {% for sub_menu in menu.get_submenu %}#}
+{#                                <ul>#}
+{#                                    <li><a href="about.html">{{ sub_menu.submenu_name }}</a></li>#}
+{#                                </ul>#}
+{#                            </li>#}
+{#                            {% endfor %}#}
+
+
+
+{#                            <li class="scroll-to-section"><a href="#explore">Explore</a></li>#}
+                            <li class="scroll-to-section"><a href="{% url 'about-us' %}">About Us</a></li>
+                        {% if request.user.is_authenticated %}
+                            <li class="scroll-to-section" style="margin-left: 30px;margin-top: 8px">Welcome,  {{ user.username }}</li>
+                        {% else %}
+                            <li class="scroll-to-section"><a href="{% url 'register' %}" style="margin-left: 25px">Login</a></li>
+                        {% endif %}
+
+                            <a href="{% url 'cart_view' %}"><i class="fa-solid fa-cart-shopping fa-lg" style="margin-top: 15px; color: black;"></i></a>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->

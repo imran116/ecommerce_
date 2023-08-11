@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login and Registration Form</title>
+    {% load static  %}
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/login_reg_style.css' %}">
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h2>Login</h2>
+      <form id="login-form" method="post" action="">
+          {% csrf_token %}
+        <input type="text" placeholder="Username" name="username" required>
+        <input type="password" placeholder="Password" name="password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+  </div>
+</body>
+</html>

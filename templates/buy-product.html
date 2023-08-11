@@ -1,0 +1,52 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block mian_container %}
+{% include 'header.html' %}
+<br>
+<br>
+<section class="section" id="product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                <div class="left-images">
+                    <img src="{{ product.image.url }}" alt="">
+{#                    <img src="{{ product.image.url }}" alt="">#}
+                </div>
+            </div>
+            <div class="col-lg-4">
+
+                <div class="right-content">
+                    <br>
+                    <h4>{{ product.title }}</h4>
+                    <br>
+                    <br>
+                    <span class="price">Product Price : ${{ product.price }}</span>
+                    <span class="price">Product Quantity : {{ quantity }}</span>
+                    <span class="price">Total Price : ${{ total_price}}</span>
+                    <ul class="stars">
+                        <span></span>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                    </ul>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod kon tempor incididunt ut labore.</span>
+                    <div class="quote">
+                        <i class="fa fa-quote-left"></i><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiuski smod.</p>
+                    </div>
+
+
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+{#<h3>Price :{{ product.price }}</h3>#}
+{#<h3>Quantity: {{ quantity }}</h3>#}
+{#<h3>Total Price: {{ total_price }}</h3>#}
+
+
+{% include 'footer.html' %}
+{% endblock %}

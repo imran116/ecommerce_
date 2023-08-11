@@ -1,0 +1,232 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block mian_container %}
+
+       <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+
+    <!-- ***** Header Area Start ***** -->
+    {% include 'header.html' %}
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="main-banner" id="top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="left-content">
+                        <div class="thumb">
+                            <div class="inner-content">
+                                <h4>We Are Hexashop</h4>
+                                <span>Awesome, clean &amp; creative HTML5 Template</span>
+                                <div class="main-border-button">
+                                    <a href="#subscription">Purchase Now!</a>
+                                </div>
+                            </div>
+                            <img src="{% static 'assets/images/left-banner-image.jpg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="right-content">
+                        <div class="row">
+                            {% for mainBanner in mainBanners %}
+                            <div class="col-lg-6">
+                                <div class="right-first-image">
+                                    <div class="thumb">
+                                        <div class="inner-content">
+                                            <h4>{{ mainBanner.banner_category_name }}</h4>
+                                            <span>{{ mainBanner.title }}</span>
+                                        </div>
+                                        <div class="hover-content">
+                                            <div class="inner">
+                                                <h4>{{ mainBanner.banner_category_name }}</h4>
+                                                <p>{{ mainBanner.short_desc }}</p>
+                                                <div class="main-border-button">
+                                                    <a href="{{ mainBanner.html_page }}">Discover More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img src="{{ mainBanner.image.url }}">
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <!-- ***** Category Area Starts ***** -->
+    {% for categorylist in categoryLists %}
+      <section class="section" id="men">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-heading">
+                        <h2>{{ categorylist.category_name }} Latest</h2>
+                        <span>{{ categorylist.category_short_desc }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="men-item-carousel">
+                        <div class="owl-men-item owl-carousel">
+                            {% for additem in categorylist.get_addCategoryItems %}
+                            <div class="item">
+                                <div class="thumb">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li><a href="{% url 'single-product' additem.pk %}"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="{% url 'add-to-card' additem.pk %}"><i class="fa fa-shopping-cart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <img src="{{ additem.image.url }}" alt="">
+
+                                </div>
+                                <div class="down-content">
+                                    <h4>{{ additem.title }}</h4>
+                                    <span>${{ additem.price }}</span>
+                                    <ul class="stars">
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                             {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <div>
+                            <br>
+                            <a href="{% url 'all_products' %}" style="margin-left: 15px; color: black">Discover More-->></a>
+                        </div>
+
+
+
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+
+
+    <!-- ***** Category Area Ends ***** -->
+
+    <!-- ***** Explore Area Starts ***** -->
+    <section class="section" id="explore">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="left-content">
+                        <h2>{{ explores.title }}</h2>
+                        <span>{{ explores.paragraph_one }}</span>
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i><p>{{ explores.quote }}</p>
+                        </div>
+                        <p>{{ explores.paragraph_two }}</p>
+                        <p>{{ explores.paragraph_three }}</p>
+                        <div class="main-border-button">
+                            <a href="{% url 'all_products' %}">Discover More</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="right-content">
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="leather">
+                                    <h4>{{ exploresProducts.first_product_title }}</h4>
+                                    <span>{{ exploresProducts.first_product_subtitle }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="first-image">
+                                    <img src="{{ exploresProducts.first_product_image.url }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="second-image">
+                                    <img src="{{ exploresProducts.second_product_image.url }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="types">
+                                    <h4>{{ exploresProducts.second_product_title }}</h4>
+                                    <span>{{ exploresProducts.second_product_subtitle }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Explore Area Ends ***** -->
+
+    <!-- ***** Social Area Starts ***** -->
+    <section class="section" id="social">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>{{ socialMediaSections.title }}</h2>
+                        <span>{{ socialMediaSections.sub_title }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row images">
+                {% for socialMediaItem in socialMediaItems %}
+                <div class="col-2">
+                    <div class="thumb">
+                        <div class="icon">
+                            <a href="{{ socialMediaItem.instagram_link }}">
+                                <h6>{{ socialMediaItem.title }}</h6>
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </div>
+                        <img src="{{ socialMediaItem.image.url }}" alt="">
+                    </div>
+                </div>
+                {% endfor %}
+
+
+
+            </div>
+        </div>
+    </section>
+    <!-- ***** Social Area Ends ***** -->
+
+{% include 'subscriber.html' %}
+
+    <!-- ***** Footer Start ***** -->
+   {% include 'footer.html' %}
+
+
+
+{% endblock %}

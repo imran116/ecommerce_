@@ -1,0 +1,142 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block mian_container %}
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+    
+    
+{% include 'header.html' %}
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Check Our Products</h2>
+                        <span>Awesome &amp; Creative HTML CSS layout by TemplateMo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+
+    <!-- ***** Products Area Starts ***** -->
+    <section class="section" id="products">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>Our Latest Products</h2>
+                        <span>Check out all of our products.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                {% for itemOjects in itemObjects %}
+                <div class="col-lg-4">
+                    <div class="item">
+                        <div class="thumb">
+                            <div class="hover-content">
+                                <ul>
+                                    <li><a href="{% url 'single-product' itemOjects.pk %}"><i class="fa fa-eye"></i></a></li>
+                                    <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <img src="{{ itemOjects.image.url }}" alt="">
+                        </div>
+                        <div class="down-content">
+                            <h4>{{ itemOjects.title }}</h4>
+                            <span>${{ itemOjects.price }}</span>
+                            <ul class="stars">
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+   <div class="col-lg-12">
+
+   <div class="pagination">
+        <span>
+            <ul>
+            {% if itemObjects.has_previous %}
+               <li><a href="?page=1">1</a></li>
+                {% if itemObjects.number > 3 %}
+                    ...
+                {% endif %}
+                {% if itemObjects.number|add:'-1' > 1 %}
+                    <li><a href="?page={{ itemObjects.number|add:'-1' }}">{{ itemObjects.number|add:'-1' }}</a></li>
+                {% endif %}
+            {% endif %}
+            <li>
+            <span class="active">
+               {{ itemObjects.number }}
+            </span>
+             </li>
+            {% if itemObjects.has_next %}
+                {% if itemObjects.paginator.num_pages > itemObjects.number|add:'1' %}
+                   <li><a href="?page={{ itemObjects.number|add:'1' }}">{{ itemObjects.number|add:'1' }}</a></li>
+                {% endif %}
+                {% if itemObjects.paginator.num_pages > itemObjects.number|add:'2' %}
+                    ...
+                {% endif %}
+               <li> <a href="?page={{ itemObjects.paginator.num_pages }}">{{ itemObjects.paginator.num_pages }}</a> </li>
+            {% endif %}
+             </ul>
+        </span>
+   </div>
+
+
+    </div>
+
+{#                <div class="col-lg-12">#}
+{#                    <div class="pagination">#}
+{#                        <ul>#}
+{#                            <li>#}
+{#                                <a href="#">1</a>#}
+{#                            </li>#}
+{#                            <li class="active">#}
+{#                                <a href="#">2</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="#">3</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="#">4</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="#">></a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+
+            </div>
+        </div>
+    </section>
+    <!-- ***** Products Area Ends ***** -->
+    
+    <!-- ***** Footer Start ***** -->
+    {% include 'footer.html' %}
+
+
+{% endblock %}

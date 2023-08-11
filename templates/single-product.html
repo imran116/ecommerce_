@@ -1,0 +1,110 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block mian_container %}
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+    
+    
+    <!-- ***** Header Area Start ***** -->
+   {% include 'header.html' %}
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Single Product Page</h2>
+                        <span>Awesome &amp; Creative HTML CSS layout by TemplateMo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+
+    <!-- ***** Product Area Starts ***** -->
+    <section class="section" id="product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                <div class="left-images">
+                    <img src="{{ product.image.url }}" alt="">
+                    <img src="{{ product.image.url }}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <form method="post" action="{% url 'buy-product' product.pk %}">
+                    {% csrf_token %}
+                <div class="right-content">
+                    <h4>{{ product.title }}</h4>
+                    <span class="price">${{ product.price }}</span>
+                    <ul class="stars">
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                    </ul>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod kon tempor incididunt ut labore.</span>
+                    <div class="quote">
+                        <i class="fa fa-quote-left"></i><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiuski smod.</p>
+                    </div>
+                    <div class="quantity-content">
+                        <div class="left-content">
+                            <h6>No. of Orders</h6>
+                        </div>
+
+                        <div class="right-content">
+                            <div class="quantity buttons_added ">
+                                <input type="button" value="-" class="minus" onclick="decreaseQuantity()" ><input type="number" step="1" min="1" max="" name="quantity" id="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus" onclick="increaseQuantity()">
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="total">
+                        <h4>Each Product: ${{ product.price }}</h4>
+                        <br>
+                        <br>
+{#                        <div class="main-border-button"><a href="#">Add To Cart</a></div>#}
+                        <input type="submit"  class="main-border-button" value="Processed">
+                    </div>
+                       <a href="{% url 'add-to-card' product.pk %}"><i class="fa-solid fa-cart-shopping fa-lg" style="margin-top: 15px; color: black;"></i></a>
+                </div>
+                    </form>
+            </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Product Area Ends ***** -->
+    
+    <!-- ***** Footer Start ***** -->
+    {% include 'footer.html' %}
+    
+  <script>
+        // Function to increase the quantity
+        function increaseQuantity() {
+            const quantityInput = document.getElementById('quantity');
+            quantityInput.stepUp();
+        }
+
+        // Function to decrease the quantity
+        function decreaseQuantity() {
+            const quantityInput = document.getElementById('quantity');
+            quantityInput.stepDown();
+        }
+  </script>
+
+{% endblock %}
